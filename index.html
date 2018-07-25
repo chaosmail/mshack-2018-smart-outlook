@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Smart Outlook</title>
+        <meta charset="UTF-8">
+
+        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="node_modules/bootstrap-vue/dist/bootstrap-vue.min.css">
+        <link rel="stylesheet" href="node_modules/office-ui-fabric-core/dist/css/fabric.min.css">
+        <link rel="stylesheet" href="style.css">
+
+        <script src="node_modules/vue/dist/vue.min.js"></script>
+        <script src="node_modules/babel-polyfill/dist/polyfill.min.js"></script>
+        <script src="node_modules/bootstrap-vue/dist/bootstrap-vue.min.js"></script>    
+    </head>
+
+    <body dir="ltr">
+        <div id="app">
+            <b-tabs>
+                <b-tab class="home">
+                    <template slot="title">
+                        <i class="ms-Icon ms-Icon--Home" aria-hidden="true"></i>
+                    </template>
+                </b-tab>
+                <b-tab class="refresh">
+                    <template slot="title">
+                        <i class="ms-Icon ms-Icon--Refresh" aria-hidden="true"></i>
+                    </template>
+                </b-tab>
+                <b-tab v-for="(folder, i) in folders" v-if="folder.inTabs" :key="i" :title="folder.name" @click="()=>updateTabByFolder(folder)" :active="folder.active">
+                        <template slot="title">
+                            {{ folder.name }} <span class="unread" v-if="folder.unreadMessages">*</span>
+                        </template>
+                </b-tab>
+                <b-tab title="+"></b-tab>
+            </b-tabs>
+            <b-navbar toggleable="md">
+
+                <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+                
+                <b-navbar-brand href="#">Outlook</b-navbar-brand>
+                
+                <b-collapse is-nav id="nav_collapse">
+                    
+                    <b-nav-form class="nav-search">
+                        <i class="ms-Icon ms-Icon--Search" aria-hidden="true"></i>
+                        <b-form-input size="sm" class="mr-sm-2" type="text" :placeholder="getSearchPlaceholder()" />
+                        <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
+                    </b-nav-form>
+                
+                    <!-- Right aligned nav items -->
+                    <b-navbar-nav class="ml-auto">
+               
+                        <b-nav-item href="#">
+                            <div><i class="ms-Icon ms-Icon--Add" style="font-size: 12px;" aria-hidden="true"></i> New Message</div>
+                        </b-nav-item>
+                    </b-navbar-nav>
+                
+                </b-collapse>
+            </b-navbar>       
+        
+            <div class="content-container">
+                <div class="sidebar-left sidebar">
+                    <div class="icons">
+                        <i class="ms-Icon ms-Icon--Mail" aria-hidden="true"></i>
+                        <i class="ms-Icon ms-Icon--Calendar" aria-hidden="true"></i>
+                        <i class="ms-Icon ms-Icon--People" aria-hidden="true"></i>
+                        <i class="ms-Icon ms-Icon--Picture" aria-hidden="true"></i>
+                        <i class="ms-Icon ms-Icon--CheckboxComposite" aria-hidden="true"></i>
+                    </div>
+                </div>
+
+                <div class="sidebar-folders sidebar" v-if="showSidebarFolders()">
+                    <div class="title">Smart Tabs</div>
+                    <b-list-group>
+                        <b-list-group-item  v-for="(folder, i) in folders" :key="i" @click="()=>updateTabByFolder(folder)" :active="folder.active">
+                            <i class="ms-Icon ms-Icon--Pinned pin"  v-if="folder.inTabs" aria-hidden="true"></i>
+                            {{ folder.name }}
+                            <span class="unread" v-if="folder.unreadMessages">{{ folder.unreadMessages }}</span>
+                        </b-list-group-item>
+                    </b-list-group>
+
+                    <div class="title">Folders</div>
+                    <b-list-group>
+                        <b-list-group-item >Inbox</b-list-group-item>
+                        <b-list-group-item >Junk Email</b-list-group-item>
+                        <b-list-group-item >Outbox</b-list-group-item>
+                        <b-list-group-item >RSS Subscriptions</b-list-group-item>
+                    </b-list-group>
+                </div>
+
+                <div class="sidebar-conversations sidebar">
+                    <div class="title">Today</div>
+                    <div class="conversation active">
+                        <div class="sender">Christoph.Koerner@microsoft.com</div>
+                        <div class="subject">RE: INC19485951 finished courses</div>
+                        <div class="excerpt">Hi Rajesh, Thanks for the quick reply..</div>
+                    </div>
+                    <div class="conversation">
+                        <div class="sender">Christoph.Koerner@microsoft.com</div>
+                        <div class="subject">RE: INC19485951 finished courses</div>
+                        <div class="excerpt">Hi Rajesh, Thanks for the quick reply..</div>
+                    </div>
+                    <div class="conversation">
+                        <div class="sender">Christoph.Koerner@microsoft.com</div>
+                        <div class="subject">RE: INC19485951 finished courses</div>
+                        <div class="excerpt">Hi Rajesh, Thanks for the quick reply..</div>
+                    </div>
+                    <div class="conversation">
+                        <div class="sender">Christoph.Koerner@microsoft.com</div>
+                        <div class="subject">RE: INC19485951 finished courses</div>
+                        <div class="excerpt">Hi Rajesh, Thanks for the quick reply..</div>
+                    </div>
+                    <div class="title">Yesterday</div>
+                    <div class="conversation">
+                        <div class="sender">Christoph.Koerner@microsoft.com</div>
+                        <div class="subject">RE: INC19485951 finished courses</div>
+                        <div class="excerpt">Hi Rajesh, Thanks for the quick reply..</div>
+                    </div>
+                    <div class="conversation">
+                        <div class="sender">Christoph.Koerner@microsoft.com</div>
+                        <div class="subject">RE: INC19485951 finished courses</div>
+                        <div class="excerpt">Hi Rajesh, Thanks for the quick reply..</div>
+                    </div>
+                    <div class="conversation">
+                        <div class="sender">Christoph.Koerner@microsoft.com</div>
+                        <div class="subject">RE: INC19485951 finished courses</div>
+                        <div class="excerpt">Hi Rajesh, Thanks for the quick reply..</div>
+                    </div>
+                </div>
+
+                <div class="message-container">
+                    <div class="title">RE: INC19485951 finished courses</div>
+                    <div class="sender">From: Christoph.Koerner@microsoft.com</div>
+                    <div class="receiver-cc">cc: office@chaosmail.at</div>
+                    <div class="message">
+                            Hi Rajesh,<br><br>
+                            Thanks for the quick reply.<br><br>
+                            Attached to this email I am sending you screenshots of all 3 finished courses, with the Receive Credits button. However, when I click the button it takes me to the exit screen but ultimately nothing happens.<br><br>
+                            Thanks for helping me out!<br><br>
+                            Best,<br>
+                            Christoph                            
+                    </div>
+                    <div class="excerpt"></div>
+                </div>
+            </div>
+        </div>
+
+        <script src="app.js"></script>
+    </body>
+</html>

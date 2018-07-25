@@ -1,0 +1,21 @@
+{
+    "name": "smart-outlook",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Christoph Koerner",
+    "license": "MIT",
+    "dependencies": {
+        "babel-polyfill": "^6.26.0",
+        "bootstrap": "^4.1.2",
+        "bootstrap-vue": "^2.0.0-rc.11",
+        "office-ui-fabric-core": "^9.6.0",
+        "vue": "^2.5.16"
+    },
+    "devDependencies": {
+        "http-server": "^0.11.1"
+    }
+}

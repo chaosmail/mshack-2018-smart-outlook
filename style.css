@@ -1,0 +1,275 @@
+html,
+body {
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+body {
+    font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-weight: 200;
+    font-size: 14px;
+}
+
+#app {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+
+.ms-Icon {
+    margin: -1px;
+}
+
+.inline-icon {
+    margin-bottom: -2px;
+}
+
+.navbar-light {
+    color: #fff;
+    background: #0078D7;
+    flex: 0 1 auto !important;
+}
+
+.navbar-light a, .navbar-brand a {
+    color: #fff !important;
+}
+
+.navbar-light .nav-item:hover {
+    background: #005A9E !important;
+    border-radius: 2px;
+}
+
+.navbar-brand a {
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.nav-search {
+    width: 80%;
+}
+
+.nav-search i {
+    color: rgb(0, 69, 120)!important;
+    position: absolute;
+    margin-top: 0px;
+    margin-left: 0.75em;
+}
+
+.nav-search input {
+    width: 100% !important;
+    color: #393939 !important;
+    background: rgba(255,255,255,.7) !important;
+    border-radius: 2px;
+    padding-left: 3em;
+}
+
+.nav-search input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgb(0, 69, 120)!important;
+    opacity: 1; /* Firefox */
+}
+
+.nav-search .form-control:focus {
+    background: rgba(255,255,255,1) !important;
+    border-color: transparent !important;
+}
+
+.tabs {
+    flex: 0 1 auto !important;
+}
+
+.tabs .unread {
+    float: right;
+    position: relative;
+    margin-left: 8px;
+    font-size: 10px;
+    vertical-align: baseline;
+}
+
+.nav-tabs {
+    background: #F8F8F8;
+    border-bottom: none;
+}
+
+.nav-tabs .fa {
+    font-size: 4px;
+    font-weight: 400;
+}
+
+.nav-tabs .nav-item a {
+    color: rgb(0, 69, 120)!important;
+    /* color:  #0078D7 !important; */
+}
+
+.nav-tabs .nav-link {
+    border-radius: 0px;
+    border-top: 0px transparent;
+    border-bottom: 0px transparent;
+}
+
+.nav-tabs .nav-item a:hover {
+    background: rgb(199, 224, 244);
+}
+
+.nav-tabs .nav-item .active {
+    color: #fff !important;
+    background: #0078D7;
+}
+
+.content-container {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+}
+
+.sidebar {
+    background: #F8F8F8;
+    border-right: 1px solid #eaeaea;
+    margin-bottom: 4px;
+}
+
+.sidebar-left {
+    width: 48px;
+    min-width: 48px;
+}
+
+.sidebar-folders {
+    width: 180px;
+    min-width: 180px;
+}
+
+.sidebar-conversations {
+    width: 272px;
+    min-width: 272px;
+}
+
+.sidebar-left .icons {
+    width: 48px;
+    text-align: center;
+    width: 48px;
+    display: block;
+    position:fixed;
+    bottom:0px;
+}
+
+.sidebar-left .icons i {
+    display: block;
+    font-size: 16px;
+    height: 40px;
+}
+
+.sidebar-left .icons i:hover {
+    color: #393939;
+}
+
+.sidebar-folders .title {
+    margin: 16px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.sidebar-folders .unread {
+    float: right;
+    position: relative;
+    font-weight: 300;
+}
+
+.sidebar-folders .list-group-item {
+    cursor: pointer;
+    border-radius: 0px;
+    margin-top: 1px;
+    margin-left: 0px;
+    margin-right: 0px;
+    background: none;
+    border: 0px transparent;
+    margin-top: 2px !important;
+    margin-bottom: 4px !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+}
+
+.sidebar-folders .list-group-item:hover {
+    background: #eaeaea;
+}
+
+.sidebar-folders .active {
+    font-weight: 600;
+    color: rgb(0, 69, 120)!important;
+    background: rgb(199, 224, 244);
+}
+
+.sidebar-folders .pin {
+    display: inline-box;
+    position: absolute;
+    left: 6px;
+    font-size: 8px;
+    padding-top: 6px;
+    height: 20px;
+}
+
+.sidebar-conversations {
+    overflow-y: scroll;
+}
+
+.sidebar-conversations .title {
+    margin: 16px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.sidebar-conversations .conversation {
+    cursor: pointer;
+    border-bottom: 1px solid #eaeaea;
+    margin-top: 2px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 4px;
+    display: inline-block;
+}
+
+.sidebar-conversations .conversation:hover {    
+    background: #eaeaea;
+}
+
+.sidebar-conversations .conversation.active {    
+    color: rgb(0, 69, 120)!important;
+    background: rgb(199, 224, 244);
+}
+
+.sidebar-conversations .conversation .sender {
+    font-variant: small-caps;
+    font-size: 10px;
+}
+
+.sidebar-conversations .conversation .subject {
+    font-weight: 400;
+}
+
+.message-container {
+    padding: 16px;
+}
+
+.message-container .title {
+    width: auto;
+    margin-bottom: 16px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.message-container .sender {
+    margin-bottom: 8px;
+}
+
+.message-container .receiver-cc {
+    margin-bottom: 16px;
+}
+
+.message-container .message {
+    margin-top: 4px;
+    margin-bottom: 16px;
+}
